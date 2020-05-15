@@ -1,3 +1,3 @@
-# PePe2 Bird game
+# PePe Bird game
 
 By Zhe Quan, Tshuen Hau and Kevin
