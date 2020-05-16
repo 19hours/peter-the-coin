@@ -9,7 +9,7 @@ xhr.addEventListener("readystatechange", function () {
     });
     customGap = pillarGap(historical)
     let script = document.createElement("script");
-    script.src = "./js/pepebird.js";
+    script.src = "./js/peter.js";
     script.type = "text/javascript";
     document.getElementsByTagName("head")[0].appendChild(script);
   }

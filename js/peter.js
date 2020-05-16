@@ -1,4 +1,4 @@
-const cvs = document.getElementById("pepebird");
+const cvs = document.getElementById("peter");
 const ctx = cvs.getContext("2d");
 
 let frames = 0;
