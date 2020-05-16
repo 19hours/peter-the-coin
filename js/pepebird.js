@@ -5,7 +5,7 @@ let frames = 0;
 const DEGREE = Math.PI / 180;
 
 const sprite = new Image();
-sprite.src = "img/sprite8.png";
+sprite.src = "img/sprite10.png";
 
 const SCORE_S = new Audio();
 SCORE_S.src = "audio/sfx_point.wav";
@@ -48,27 +48,23 @@ const startBtn = {
 cvs.addEventListener("click", function (evt) {
   switch (state.current) {
     case state.game:
-        if (bird.y - bird.radius <= 0) return;
-        bird.flap();
-        FLAP.play();
-        break;
-    case state.over:
-    // let rect = cvs.getBoundingClientRect();
-    // let clickX = evt.clientX - rect.left;
-    // let clickY = evt.clientY - rect.top;
-    // console.log(clickX)
-    // console.log(clickY)
-    // console.log(startBtn.x)
-    // console.log(startBtn.y)
-    // // CHECK IF WE CLICK ON THE START BUTTON
-    // if(clickX >= startBtn.x && clickX <= startBtn.x + startBtn.w && clickY >= startBtn.y && clickY <= startBtn.y + startBtn.h){
-    //     pipes.reset();
-    //     bird.speedReset();
-    //     score.reset();
-    //     state.current = state.getReady;
-    // }
-    // break;
+      if (bird.y - bird.radius <= 0) return;
+      bird.flap();
+      FLAP.play();
+      break;
   }
+});
+
+document.getElementById("restart").addEventListener("click", function () {
+  pipes.reset();
+  bird.speedReset();
+  score.reset();
+  state.current = state.getReady;
+  window.setTimeout(() => {
+    state.current = state.game;
+  }, 500);
+  document.getElementById("logo").classList.toggle("hidden");
+  document.getElementById("gameover").classList.toggle("hidden");
 });
 
 document.onkeypress = function (e) {
@@ -89,7 +85,6 @@ const bg = {
 
   draw: function () {
     ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
-
     ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x + this.w, this.y, this.w, this.h);
   }
 
@@ -107,7 +102,6 @@ const fg = {
 
   draw: function () {
     ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
-
     ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x + this.w, this.y, this.w, this.h);
   },
 
@@ -118,29 +112,61 @@ const fg = {
   }
 }
 
+function getSkin(v) {
+  if (v >= 90 && v < 110) {
+    return [{
+      sX: 443,
+      sY: 112
+    }, {
+      sX: 443,
+      sY: 139
+    }, {
+      sX: 443,
+      sY: 164
+    }, {
+      sX: 443,
+      sY: 139
+    }];
+  }
+  else if (v >= 110) {
+    return [{
+      sX: 412,
+      sY: 112
+    }, {
+      sX: 412,
+      sY: 139
+    }, {
+      sX: 412,
+      sY: 164
+    }, {
+      sX: 412,
+      sY: 139
+    }];
+  } else {
+    return [{
+      sX: 276,
+      sY: 112
+    }, {
+      sX: 276,
+      sY: 139
+    }, {
+      sX: 276,
+      sY: 164
+    }, {
+      sX: 276,
+      sY: 139
+    }];
+  }
+}
+
 const bird = {
-  animation: [{
-    sX: 276,
-    sY: 112
-  }, {
-    sX: 276,
-    sY: 139
-  }, {
-    sX: 276,
-    sY: 164
-  }, {
-    sX: 276,
-    sY: 139
-  }],
+  animation: getSkin(customGap),
   x: 50,
   y: 150,
   w: 34,
   h: 26,
-
   radius: 12,
-
   frame: 0,
-
   gravity: 0.25,
   jump: 4.6,
   speed: 0,
@@ -148,12 +174,10 @@ const bird = {
 
   draw: function () {
     let bird = this.animation[this.frame];
-
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.rotation);
     ctx.drawImage(sprite, bird.sX, bird.sY, this.w, this.h, -this.w / 2, -this.h / 2, this.w, this.h);
-
     ctx.restore();
   },
 
@@ -219,7 +243,8 @@ const gameOver = {
 
   draw: function () {
     if (state.current == state.over) {
-      ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
+      document.getElementById("logo").classList.remove("hidden");
+      document.getElementById("gameover").classList.remove("hidden");
     }
   }
 
@@ -246,12 +271,9 @@ const pipes = {
   draw: function () {
     for (let i = 0; i < this.position.length; i++) {
       let p = this.position[i];
-
       let topYPos = p.y;
       let bottomYPos = p.y + this.h + this.gap;
-
       ctx.drawImage(sprite, this.top.sX, this.top.sY, this.w, this.h, p.x, topYPos, this.w, this.h);
-
       ctx.drawImage(sprite, this.bottom.sX, this.bottom.sY, this.w, this.h, p.x, bottomYPos, this.w, this.h);
     }
   },
@@ -312,11 +334,8 @@ const score = {
       ctx.strokeText(this.value, cvs.width / 2, 50);
 
     } else if (state.current == state.over) {
-      ctx.font = "25px Teko";
-      ctx.fillText(this.value, 225, 186);
-      ctx.strokeText(this.value, 225, 186);
-      ctx.fillText(this.best, 225, 228);
-      ctx.strokeText(this.best, 225, 228);
+      document.getElementById("score").innerHTML = this.value;
+      document.getElementById("best-score").innerHTML = this.best;
     }
   },
 
@@ -328,7 +347,6 @@ const score = {
 function draw() {
   ctx.fillStyle = "#272461";
   ctx.fillRect(0, 0, cvs.width, cvs.height);
-
   bg.draw();
   pipes.draw();
   fg.draw();
@@ -348,7 +366,6 @@ function loop() {
   update();
   draw();
   frames++;
-
   requestAnimationFrame(loop);
 }
 loop();

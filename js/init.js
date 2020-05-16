@@ -28,10 +28,24 @@ function normalizer(i) {
 }
 
 function pillarGap(transactions) {
-  let totalAmt = transactions.reduce((prev, curr) => prev + curr);
-  let avgAmt = totalAmt / transactions.length;
-  let lastAmt = transactions[transactions.length-1];
-  let gap = lastAmt - avgAmt;
+  // let totalAmt = transactions.reduce((prev, curr) => prev + curr);
+  // let avgAmt = totalAmt / transactions.length;
+  // let lastAmt = transactions[transactions.length-1];
+  // let gap = lastAmt - avgAmt;
+
+  let arr1 = transactions.slice(0,5)
+  let arr2 = transactions.slice(1,6)
+  let arr3 = transactions.slice(2,7)
+  let totalAmt1 = arr1.reduce((prev, curr) => prev + curr);
+  let totalAmt2 = arr2.reduce((prev, curr) => prev + curr);
+  let totalAmt3 = arr3.reduce((prev, curr) => prev + curr);
+
+  let avgAmt1 = totalAmt1 / 5;
+  let avgAmt2 = totalAmt2 / 5;
+  let avgAmt3 = totalAmt3 / 5;
+
+  let gap = (arr1[4]-avgAmt1+arr2[4]-avgAmt2+arr3[4]-avgAmt3)/3
+
   if (gap != 0) {
     return normalizer(gap);
   } else {
@@ -40,5 +54,5 @@ function pillarGap(transactions) {
 }
 
 function sigmoid(i) {
-  return 130/(1+Math.pow(Math.E, -(i-95)));
+  return 150/(1+Math.pow(Math.E, -(i-100)));
 }

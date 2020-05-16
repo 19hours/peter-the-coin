@@ -12,10 +12,22 @@
       <img class="logo" src="./img/logo.png" />
     </div>
     <div id="welcome" class="modal">
-      <img class="welcome-wing" src="./img/wing.gif" />
-      <p>Welcome to Pepé bird! The difficulty level is customised based on your account savings and spendings. Save more to decrease the level difficulty!</p>
+      <div class="wings">
+        <img class="wing" src="./img/wing.gif" />
+        <img class="wing" id="wings-2" src="./img/RAZER.gif" />
+        <img class="wing" id="wings-3" src="./img/MAGNIFICENT.gif" />
+      </div>
+      <p>Welcome to Peter the coin! The difficulty level is customised based on your account savings and spendings. Save more to decrease the difficulty level!</p>
       <button id="start" class="start-btn"><div>START</div></button>
     </div>
+    <div id="gameover" class="modal hidden">
+      <h2 class="gameover-title">It's time to save up!</h2>
+      <div class="score-text">Your score: <span id="score">10</span></div>
+      <div class="bestscore-text">Best score: <span id="best-score">10</span></div>
+      <p>Saving up unlocks new skins and decreases difficulty level!</p>
+      <button id="restart" class="start-btn"><div>PLAY AGAIN</div></button>
+    </div>
+    <center><h1 class="warning">Please switch to mobile to access the game</h1></center>
     <canvas id="pepebird" width="320" height="480"></canvas>
     <script src="./js/init.js"></script>
   </body>

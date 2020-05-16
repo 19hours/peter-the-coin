@@ -16,8 +16,8 @@ canvas {
   z-index: 2;
   position: absolute;
   left: 50%;
-  margin-left: -126px;
-  margin-top: 25px;
+  margin-left: -55px;
+  margin-top: 15px;
 }
 
 .modal {
@@ -42,19 +42,33 @@ canvas {
   color: #693e18;
   font-size: 22px;
   line-height: 1.2;
-  padding: 15px 20px 15px;
+  padding: 0px 20px 7px;
 }
 
-.welcome-wing {
+.wings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+#wings-2 {
+  margin-top: 15px;
+  margin: 15px 8px 0;
+}
+
+#wings-3 {
+  margin-top: 16px;
+}
+
+.wing {
   width: 60px;
   height: auto;
-  display: block;
-  margin: 0 auto;
 }
 
 .logo-modal > .logo {
   animation: float 6s ease-in-out infinite;
-  height: 60px;
+  height: 110px;
   width: auto;
   margin: 0 auto;
   display: block;
@@ -80,6 +94,29 @@ canvas {
   display: none;
 }
 
+.score-text {
+  font-family: 'VT323', monospace;
+  text-align: center;
+  color: #432400;
+  font-size: 30px;
+}
+
+.bestscore-text {
+  font-family: 'VT323', monospace;
+  text-align: center;
+  color: #4a2b09;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.gameover-title {
+  font-family: 'VT323', monospace;
+  text-align: center;
+  color:  #000;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
 @keyframes float {
 	0% {
 		transform: translatey(0px);
@@ -90,4 +127,26 @@ canvas {
 	100% {
 		transform: translatey(0px);
 	}
+}
+
+@media (min-width: 600px){
+  #pepebird, #welcome, #logo, #gameover {
+    display: none !important;
+  }
+
+  body {
+    background-color: #8a6442;
+  }
+
+  .warning {
+    font-family: 'VT323', monospace;
+    color: #432400;
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 599px) {
+  .warning {
+    display: none !important;
+  }
 }
