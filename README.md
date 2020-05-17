@@ -2,7 +2,7 @@
 
 # Peter the Coin
 
-A simple game to encourage better financial discipline in players by incentivising them to save more and spend less. We retrieve the player's transactions through the Mambu API.
+A simple game to encourage financial discipline. We retrieve the player's transactions through the Mambu API.
 
 ## Custom Skins
 <img src="./img/wing.gif" width="60" height="auto" /><img src="./img/RAZER.gif" width="60" height="auto" /><img src="./img/MAGNIFICENT.gif" width="60" height="auto" />
