@@ -6,8 +6,8 @@ A simple game to encourage better financial discipline in players by incentivisi
 
 ## Skins
 <img src="./img/wing.gif" width="60" height="auto" />
-<img src="./img/razer.gif" width="60" height="auto" />
-<img src="./img/magnificent.gif" width="60" height="auto" />
+<img src="./img/RAZER.gif" width="60" height="auto" />
+<img src="./img/MAGNIFICENT.gif" width="60" height="auto" />
 
 ## Game Screenshots
 
