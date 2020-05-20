@@ -1,15 +1,11 @@
 var customGap
 
 // Get transactions and calculate gap sizes and skin type
-var historical = []
 let xhr = new XMLHttpRequest()
 xhr.addEventListener("readystatechange", function () {
   if (this.readyState === 4) {
-    let transactions = JSON.parse(this.responseText)
-    transactions.forEach(transaction => {
-      historical.push(parseInt(transaction.amount))
-    })
-    customGap = pillarGap(historical)
+
+    customGap = 100
     let script = document.createElement("script")
     script.src = "./js/peter.js"
     script.type = "text/javascript"
